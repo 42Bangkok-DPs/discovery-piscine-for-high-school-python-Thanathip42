@@ -48,7 +48,7 @@ def is_under_attack(board, king_x, king_y, piece_type, move_func):
     return False  # กรณีไม่มีการ check
 
 def rook_moves(board, x, y, king_x, king_y):
-    # เช็คว่า Rook ที่ (x, y) in check ไหม
+    # เช็คว่า Rook ที่ (x, y) check King ไหม
     if x == king_x:  # ถ้าอยู่ในแนวนอน
         step = 1 if king_y > y else -1  # กำหนดทิศทาง
         for j in range(y + step, king_y, step):  # ตรวจสอบช่องว่างระหว่าง
@@ -64,7 +64,7 @@ def rook_moves(board, x, y, king_x, king_y):
     return False  # ถ้าไม่อยู่ในแนวที่สามารถ check ได้
 
 def bishop_moves(board, x, y, king_x, king_y):
-    # เช็คว่า Bishop ที่ (x, y) in check ไหม
+    # เช็คว่า Bishop ที่ (x, y) check King ไหม
     if abs(king_x - x) == abs(king_y - y):  # ถ้าอยู่ในแนวเฉียง
         step_x = 1 if king_x > x else -1  #  กำหนดทิศทางแนวนอน
         step_y = 1 if king_y > y else -1  #  กำหนดทิศทางแนวตั้ง
@@ -82,5 +82,5 @@ def queen_moves(board, x, y, king_x, king_y):
     return rook_moves(board, x, y, king_x, king_y) or bishop_moves(board, x, y, king_x, king_y)
 
 def pawn_moves(board, x, y, king_x, king_y):
-    # เช็คว่า Pawn ที่ (x, y) in check ไหม
+    # เช็คว่า Pawn ที่ (x, y) check King ไหม
     return (king_x == x - 1 and abs(king_y - y) == 1)  # ให้ Pawn อยู่ฝ่ายขาว (เคลื่อนที่ไปด้านบน) 
